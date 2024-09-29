@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   belongs_to :team_name, optional: true  # チームなしでもユーザーを作成可能
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, length: { maximum: 20 }, presence: true, uniqueness: true
 end
