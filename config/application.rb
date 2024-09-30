@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module RULEMasterApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.load_defaults 6.1
     config.generators do |g| # ここから追記
       g.helper     false      # helperファイルを自動生成しない
