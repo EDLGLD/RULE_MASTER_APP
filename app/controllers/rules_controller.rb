@@ -1,9 +1,16 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: %i[ show edit update destroy ]
+  before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /rules or /rules.json
   def index
-    @rules = Rule.all
+    set_team
+    if params[:team_name_id]
+      @team = TeamName.find(params[:team_name_id])
+      @rules = @team.rules
+    else
+      @rules = Rule.all
+    end
   end
 
   # GET /rules/1 or /rules/1.json
@@ -21,8 +28,9 @@ class RulesController < ApplicationController
 
   # POST /rules or /rules.json
   def create
-    @rule = Rule.new(rule_params)
-
+    set_team 
+    @rule = @team.rules.new(rule_params)
+  
     respond_to do |format|
       if @rule.save
         format.html { redirect_to @rule, notice: "Rule was successfully created." }
@@ -33,7 +41,6 @@ class RulesController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /rules/1 or /rules/1.json
   def update
     respond_to do |format|
@@ -63,8 +70,16 @@ class RulesController < ApplicationController
       @rule = Rule.find(params[:id])
     end
 
+    # ユーザーのチームを設定する
+    def set_team
+      @team = current_user.team_names.find_by(id: params[:team_name_id]) || current_user.team_names.first
+      unless @team
+        redirect_to rules_path, alert: "チームが見つかりませんでした。"  # チームが見つからない場合の処理
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def rule_params
-      params.require(:rule).permit(:title, :details, :background, :created_at, :ended_at, :team_name_id)
+      params.require(:rule).permit(:title, :details, :background, :created_at, :ended_at)
     end
 end

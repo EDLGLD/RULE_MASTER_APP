@@ -2,7 +2,6 @@
   <% if rule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
-
       <ul>
         <% rule.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -37,11 +36,11 @@
   </div>
 
   <div class="field">
-    <%= form.label :team_name_id %>
-    <%= form.text_field :team_name_id %>
+    <%= form.label :team_name_id, "チーム名" %>
+    <%= form.collection_select :team_name_id, TeamName.all, :id, :name, prompt: "チームを選択" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "ルールを追加" %>
   </div>
 <% end %>
