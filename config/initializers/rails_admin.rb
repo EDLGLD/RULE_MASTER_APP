@@ -1,29 +1,21 @@
 RailsAdmin.config do |config|
+  # Webpackerを使っている場合の設定
   config.asset_source = :webpacker
 
-  ### Popular gems integration
-
-  ## == Devise ==
+  ### Deviseによる認証
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
   config.current_user_method(&:current_user)
 
-  ## == CancanCan ==
+  ### CancanCanによる認可
   config.authorize_with :cancancan
 
-  ## == Pundit ==
-  # config.authorize_with :pundit
+  ### カスタムレイアウトの指定
+  # 親コントローラーとしてApplicationControllerを指定
+  config.parent_controller = 'ApplicationController'
 
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/railsadminteam/rails_admin/wiki/Base-configuration
-
-  ## == Gravatar integration ==
-  ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
-
+  ### 必要なアクションの定義
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -34,9 +26,5 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
   end
 end

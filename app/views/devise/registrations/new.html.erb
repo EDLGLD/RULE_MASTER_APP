@@ -9,8 +9,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :team_name_id %>
-    <%= f.collection_select :team_name_id, TeamName.all, :id, :name, prompt: true %>
+    <%= f.label :team_names, "所属チーム" %><br />
+    <%= f.collection_check_boxes :team_name_ids, TeamName.all, :id, :name do |b| %>
+      <div>
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
   </div>
 
   <div class="field">
@@ -21,7 +26,7 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
