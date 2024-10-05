@@ -5,11 +5,11 @@ describe User do
   let(:teamname) { 'テスト太郎' }
   let(:email) { 'test@example.com' }
   let(:password) { '12345678' }
-  let(:user) { User.new(username: username, email: email, password: password, password_confirmation: password) }
+  let(:user) { User.new(username:, email:, password:, password_confirmation: password) }
 
   describe '.first' do
     before do
-      create(:user, username: username, email: email)
+      create(:user, username:, email:)
     end
 
     subject { described_class.first }
@@ -21,9 +21,7 @@ describe User do
   end
 
   describe 'validation' do
-
     describe 'username属性' do
-
       describe '文字数制限の検証' do
         context 'usernameが20文字以下の場合' do
           let(:username) { 'あいうえおかきくけこさしすせそたちつてと' } # 20文字

@@ -38,7 +38,7 @@ RSpec.configure do |config|
     options.add_argument('--no-sandbox') # Linux環境で必要な場合あり
     options.add_argument('--disable-dev-shm-usage') # メモリ共有の問題を回避
 
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
   end
 
   # Capybaraのテストのタイムアウト時間を設定
@@ -47,5 +47,4 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless # ヘッドレスモードで実行する
   end
-
 end

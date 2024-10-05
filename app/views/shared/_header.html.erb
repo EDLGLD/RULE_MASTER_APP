@@ -23,6 +23,14 @@
                   <%= link_to "Admin画面", rails_admin_path, class: "dropdown-item" %>
                 </li>
               <% end %>
+              <% if current_user.leader? || current_user.admin? %>
+                <li>
+                  <%= link_to "修正リクエスト一覧", rule_requests_path, class: "dropdown-item" %>
+                </li>
+                <li>
+                  <%= link_to "新規ルール作成", new_rule_path, class: "dropdown-item" %> <!-- 新規ルール作成へのリンクを追加 -->
+                </li>
+              <% end %>
               <li>
                 <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </li>

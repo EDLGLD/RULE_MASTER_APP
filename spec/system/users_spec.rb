@@ -8,7 +8,7 @@ describe 'User', type: :system do
   let(:username) { 'テスト太郎' }
   let(:password) { 'password' }
   let(:password_confirmation) { password }
-  
+
   # チームネームを作成しておく
   let!(:team_name) { TeamName.create(name: 'Team A') }
 
