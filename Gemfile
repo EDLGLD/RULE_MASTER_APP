@@ -28,17 +28,17 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'cancancan'
+gem 'devise'
+gem 'devise-i18n'
+gem 'rails_admin', '~> 3.0'
+gem 'rails-i18n'
+gem 'rexml'
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec'
-gem 'devise'
-gem 'devise-i18n'
-gem 'rexml'
 gem 'webdrivers'
-gem 'rails_admin', '~> 3.0'
-gem 'cancancan'
-gem 'rails-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,16 +55,15 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'letter_opener_web'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'letter_opener_web'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
-  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -7,7 +7,6 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
 import 'bootstrap'; // BootstrapのJavaScriptをインポート
 import '../stylesheets/application'; // CSSをインポート
 
@@ -17,3 +16,12 @@ import 'jquery';
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// Turbolinksのページが読み込まれたときにBootstrapのドロップダウンを初期化
+document.addEventListener('turbolinks:load', () => {
+  // Bootstrapのドロップダウンを再初期化
+  var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+  var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+    return new bootstrap.Dropdown(dropdownToggleEl);
+  });
+});
